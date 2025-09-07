@@ -26,13 +26,13 @@ blocks:
   language: python
   name: extract_qbo_items
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
   - chunk_fecha_items
   uuid: extract_qbo_items
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks: []

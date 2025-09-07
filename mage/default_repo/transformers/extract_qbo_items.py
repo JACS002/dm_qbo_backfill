@@ -1,6 +1,3 @@
-# --- EXTRACT: QBO Items (REAL API) ---
-# Cumple 7.1–7.5 (ver comentarios por sección).
-
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
 if 'test' not in globals():
@@ -33,7 +30,7 @@ def _now_utc_iso():
 def _get_access_token():
     """
     Usa CLIENT_ID/CLIENT_SECRET + REFRESH_TOKEN para obtener un access_token.
-    Cumple 7.2: OAuth 2.0 (se invoca por tramo).
+    OAuth 2.0 (se invoca por tramo).
     """
     client_id = get_secret_value('QBO_CLIENT_ID')
     client_secret = get_secret_value('QBO_CLIENT_SECRET')
