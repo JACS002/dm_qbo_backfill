@@ -1,0 +1,24 @@
+# ---- Mage ----
+mage/mage_data/secrets/
+mage/mage_data/*
+!mage/mage_data/.gitkeep
+
+# ---- Docker ----
+pg_data/
+pgadmin_data/
+*.log
+
+# ---- Python (por si Mage genera cosas) ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# ---- VS Code ----
+.vscode/
+*.code-workspace
+
+# ---- Sistema ----
+.DS_Store
+Thumbs.db

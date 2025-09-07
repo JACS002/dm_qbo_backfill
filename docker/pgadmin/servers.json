@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Local Docker Postgres",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "dm",
+      "Username": "dm_user",
+      "SSLMode": "prefer"
+    }
+  }
+}

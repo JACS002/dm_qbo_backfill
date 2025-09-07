@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: dm_postgres
+    environment:
+      POSTGRES_DB: dm
+      POSTGRES_USER: dm_user
+      POSTGRES_PASSWORD: dm_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./docker/schema:/docker-entrypoint-initdb.d
+    networks:
+      - dm_net
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: dm_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "True"
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./docker/pgadmin/servers.json:/pgadmin4/servers.json
+    depends_on:
+      - postgres
+    networks:
+      - dm_net
+
+  mage:
+    image: mageai/mageai:latest
+    container_name: dm_mage
+    environment:
+      MAGE_PROJECT_NAME: qbo_backfill
+    ports:
+      - "6789:6789"
+    volumes:
+      - ./mage:/home/src
+    depends_on:
+      - postgres
+    networks:
+      - dm_net
+
+networks:
+  dm_net:
+
+volumes:
+  pg_data:
+  pgadmin_data:
