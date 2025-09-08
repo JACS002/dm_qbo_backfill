@@ -287,12 +287,21 @@ Pruebas / validaciones de calidad
 - Verifica el ingreso correcto de los metadatos
 
 Checklist de aceptación
+
 Check - Mage y Postgres se comunican por nombre de servicio.
+
 Check - Todos los secretos (QBO y Postgres) están en Mage Secrets; no hay secretos en el repo/entorno expuesto.
+
 Check - Pipelines qb_<entidad>_backfill acepta fecha_inicio y fecha_fin (UTC) y segmenta el rango.
+
 Check - Trigger one-time configurado, ejecutado y luego deshabilitado/marcado como completado.
+
 Check - Esquema raw con tablas por entidad, payload completo y metadatos obligatorios.
+
 Check - Idempotencia verificada: reejecución de un tramo no genera duplicados.
+
 Check - Paginación y rate limits manejados y documentados.
+
 Check - Volumetría y validaciones mínimas registradas y archivadas como evidencia.
+
 Check - Runbook de reanudación y reintentos disponible y seguido.
