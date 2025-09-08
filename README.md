@@ -240,5 +240,59 @@ Permisos
 - QBO: la app debe tener alcances para leer Customers/Invoices/Items.
 
 
+Definiciones de base de datos (DDL)
 
+CREATE SCHEMA IF NOT EXISTS raw;
 
+-- Customers
+CREATE TABLE IF NOT EXISTS raw.qb_customers (
+  id TEXT PRIMARY KEY,
+  payload JSONB NOT NULL,
+  ingested_at_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  extract_window_start_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  extract_window_end_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  page_number INTEGER,
+  page_size INTEGER,
+  request_payload JSONB
+);
+
+-- Items
+CREATE TABLE IF NOT EXISTS raw.qb_items (
+  id TEXT PRIMARY KEY,
+  payload JSONB NOT NULL,
+  ingested_at_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  extract_window_start_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  extract_window_end_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  page_number INTEGER,
+  page_size INTEGER,
+  request_payload JSONB
+);
+
+-- Invoices
+CREATE TABLE IF NOT EXISTS raw.qb_invoices (
+  id TEXT PRIMARY KEY,
+  payload JSONB NOT NULL,
+  ingested_at_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  extract_window_start_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  extract_window_end_utc TIMESTAMP WITH TIME ZONE NOT NULL,
+  page_number INTEGER,
+  page_size INTEGER,
+  request_payload JSONB
+);
+
+Pruebas / validaciones de calidad
+- Volumetría por entidad y rango
+- Idempotencia: ejecuta dos veces el mismo tramo y compara el count
+- Spot-check del payload: revisa los campos clave
+- Verifica el ingreso correcto de los metadatos
+
+Checklist de aceptación
+Check - Mage y Postgres se comunican por nombre de servicio.
+Check - Todos los secretos (QBO y Postgres) están en Mage Secrets; no hay secretos en el repo/entorno expuesto.
+Check - Pipelines qb_<entidad>_backfill acepta fecha_inicio y fecha_fin (UTC) y segmenta el rango.
+Check - Trigger one-time configurado, ejecutado y luego deshabilitado/marcado como completado.
+Check - Esquema raw con tablas por entidad, payload completo y metadatos obligatorios.
+Check - Idempotencia verificada: reejecución de un tramo no genera duplicados.
+Check - Paginación y rate limits manejados y documentados.
+Check - Volumetría y validaciones mínimas registradas y archivadas como evidencia.
+Check - Runbook de reanudación y reintentos disponible y seguido.
