@@ -19,8 +19,8 @@ QBO_BASE  = "https://sandbox-quickbooks.api.intuit.com"   # sandbox
 
 # Filtro por defecto para Invoices:
 # - "TxnDate" (DATE) → usa sólo YYYY-MM-DD
-# - "MetaData.LastUpdatedTime" (TIMESTAMP) → usa ISO con +00:00
-INVOICE_FILTER_FIELD = "TxnDate"  # cambia a "MetaData.LastUpdatedTime" si lo prefieres
+# - "MetaData.LastUpdatedTime" (TIMESTAMP)
+INVOICE_FILTER_FIELD = "MetaData.LastUpdatedTime"  # puedes cambiar a "TxnDate"
 
 # Parámetros de robustez (Cumple 7.2: reintentos + circuit breaker)
 MAX_ATTEMPTS_PER_REQ = 6
