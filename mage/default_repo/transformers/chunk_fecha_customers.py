@@ -31,7 +31,7 @@ def chunk_fecha(*args, **kwargs):
     Runtime vars:
       - fecha_inicio (ISO UTC, ej: '2000-01-01T00:00:00Z')
       - fecha_fin    (ISO UTC, ej: '2050-01-01T00:00:00Z')
-      - chunk        ('day' | 'week' | 'month' | 'quarter' | 'year') [default: 'day']
+      - chunk        ('day' | 'week' | 'month' | 'quarter' | 'year') [default: 'week']
       - page_size    (int) [default: 200]
 
     parámetros UTC y segmentación día/semana
