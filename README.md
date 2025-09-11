@@ -30,7 +30,7 @@ Incluye **3 pipelines independientes** para las entidades principales:
 ## 🚀 Cómo levantar el proyecto
 
 1. **Clonar el repositorio**  
-   - `git clone https://github.com/usuario/repositorio.git`  
+   - `git clone https://github.com/JACS002/dm_qbo_backfill.git`  
    - `cd repositorio`  
 
 2. **Levantar la stack**  
